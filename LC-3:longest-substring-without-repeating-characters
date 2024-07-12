@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n = s.length();
+        if(n <= 1){return n;}
+        int res = 0,start =0;
+        map<char,int> sett;
+        int i = 0;
+        while(i < n){
+            if(sett.find(s[i]) != sett.end() && sett[s[i]] >= start){
+                start = sett[s[i]] + 1;
+            }
+            else{
+                res = max(res, i - start + 1); 
+            }
+            sett[s[i]] = i;
+            i++;
+        }
+        return res;
+    }
+};
