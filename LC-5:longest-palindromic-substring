@@ -1,0 +1,35 @@
+class Solution {
+public:
+    string longestPalindrome(string str) {
+        int n = str.length();
+        if(n == 1){return str;}
+        string res = "";
+            for(int i = 0; i<n; i++){
+                int temp = 1;
+                std::string s;
+                s += str[i];
+                while((i-temp > -1 && i+temp < n) && str[i-temp] == str[i+temp]){
+                    s = str[i-temp] + s + str[i+temp];
+                    temp++;
+                }
+                if(s.length() > res.length()){
+                    res = s;
+                }
+            }
+            cout<<res;
+            for(int i = 1; i<n; i++){
+                if(str[i] == str[i-1]){
+                    int temp = 0;
+                    std::string s;
+                    while((i-temp-1 > -1 && i+temp < n) && str[i-temp-1] == str[i+temp]){
+                    s = str[i-temp-1] + s + str[i+temp];
+                    temp++;
+                    }
+                    if(s.length() > res.length()){
+                    res = s;
+                    }
+                }
+            }
+        return res;
+    }
+};
