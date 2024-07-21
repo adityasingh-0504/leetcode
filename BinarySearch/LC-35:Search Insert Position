@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int searchVal(vector<int>& nums, int start, int end, int target){
+        if(start >= end ){
+            if(target <= nums[start]){
+            return start;
+            }
+            return start+1;
+        }
+        int mid = start + (end - start) / 2;
+        if(nums[mid] < target){
+            return searchVal(nums, mid+1,end,target);
+        }
+        else if(nums[mid] > target){
+            return searchVal(nums, start,mid-1,target);
+        }
+        return mid;
+    }
+    int searchInsert(vector<int>& nums, int target) {
+        return searchVal(nums,0, nums.size()-1,target);
+    }
+};
