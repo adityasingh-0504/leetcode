@@ -1,0 +1,23 @@
+class Solution {
+public:
+    void combination(int index, int target, vector<int>& candidates, vector<int>& track, vector<vector<int>>& res){
+        if(index == candidates.size()){
+            if(target == 0){
+                res.push_back(track);
+            }
+            return;
+        }
+        if(candidates[index] <= target){
+            track.push_back(candidates[index]);
+            combination(index,target-candidates[index],candidates,track,res);
+            track.pop_back();
+        }
+        combination(index+1,target,candidates,track,res);
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
+        vector<int> track;
+        combination(0,target,candidates,track,res);
+        return res;
+    }
+};
